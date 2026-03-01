@@ -1,0 +1,76 @@
+/* simlab-core.css */
+:root {
+    --s-bg: #050505;
+    --s-accent: #00d2ff;
+    --s-text: #ffffff;
+    --s-panel-bg: rgba(0, 0, 0, 0.7);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--s-bg);
+    color: var(--s-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    user-select: none;
+}
+
+canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    outline: none;
+}
+
+.s-label {
+    position: absolute;
+    padding: 4px 10px;
+    background: var(--s-panel-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--s-accent);
+    border-radius: 4px;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -100%);
+    margin-top: -10px;
+    pointer-events: none;
+}
+
+#s-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--s-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.s-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 210, 255, 0.1);
+    border-top: 4px solid var(--s-accent);
+    border-radius: 50%;
+    animation: s-spin 1s linear infinite;
+}
+
+@keyframes s-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
