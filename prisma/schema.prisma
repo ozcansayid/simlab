@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+  PARENT
+}
+
+enum AssignmentStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id               String       @id @default(uuid())
+  email            String       @unique
+  name             String?
+  role             Role         @default(STUDENT)
+  
+  // Relations
+  simulations      Simulation[] @relation("TeacherSimulations")
+  assignments      Assignment[] @relation("StudentAssignments")
+  submissions      Submission[] @relation("StudentSubmissions")
+
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Simulation {
+  id               String       @id @default(uuid())
+  title            String?      // Optional title for the simulation
+  prompt           String       
+  enhancedPrompt   String?
+  code             String       @db.Text
+  
+  // Creator (Usually a Teacher or Admin)
+  creatorId        String?
+  creator          User?        @relation("TeacherSimulations", fields: [creatorId], references: [id])
+  
+  tasks            Task[]       // Questions attached to this simulation
+  assignments      Assignment[] // Times this simulation was assigned
+
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Task {
+  id               String       @id @default(uuid())
+  simulationId     String
+  simulation       Simulation   @relation(fields: [simulationId], references: [id])
+  
+  question         String
+  options          Json         // e.g. ["A) Option 1", "B) Option 2", "C) Option 3"]
+  correctOption    String       // e.g. "A) Option 1"
+  
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Assignment {
+  id               String       @id @default(uuid())
+  simulationId     String
+  simulation       Simulation   @relation(fields: [simulationId], references: [id])
+  
+  studentId        String
+  student          User         @relation("StudentAssignments", fields: [studentId], references: [id])
+  
+  dueDate          DateTime?
+  status           AssignmentStatus @default(PENDING)
+  
+  submissions      Submission[]
+  
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model Submission {
+  id               String       @id @default(uuid())
+  assignmentId     String
+  assignment       Assignment   @relation(fields: [assignmentId], references: [id])
+  
+  studentId        String
+  student          User         @relation("StudentSubmissions", fields: [studentId], references: [id])
+  
+  answers          Json         // Key-value pairs matching tasks to selected options: { "taskId1": "A) Option 1" }
+  score            Float?       // Calculated score (e.g., percentage 0-100)
+  
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
