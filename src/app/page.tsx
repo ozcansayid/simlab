@@ -21,7 +21,7 @@ export default function Home() {
       id: 1,
       title: "Güneş Sistemi Dinamikleri",
       category: "Astronomi",
-      author: "VeoLab Pro",
+      author: "SimLab Pro",
       views: "1.2K",
       icon: <Sparkles className="w-8 h-8 text-amber-500" />,
       color: "from-amber-400/20 to-orange-500/10",
@@ -31,7 +31,7 @@ export default function Home() {
       id: 2,
       title: "Moleküler Bağlar",
       category: "Kimya",
-      author: "VeoLab Pro",
+      author: "SimLab Pro",
       views: "856",
       icon: <Atom className="w-8 h-8 text-blue-500" />,
       color: "from-blue-400/20 to-cyan-500/10",
@@ -41,7 +41,7 @@ export default function Home() {
       id: 3,
       title: "Elektrik Devresi",
       category: "Fizik",
-      author: "VeoLab Pro",
+      author: "SimLab Pro",
       views: "3.4K",
       icon: <Zap className="w-8 h-8 text-yellow-400" />,
       color: "from-yellow-400/20 to-amber-500/10",
@@ -51,7 +51,7 @@ export default function Home() {
       id: 4,
       title: "Kimyasal Titrasyon",
       category: "Kimya",
-      author: "VeoLab Pro",
+      author: "SimLab Pro",
       views: "2.1K",
       icon: <Beaker className="w-8 h-8 text-emerald-500" />,
       color: "from-emerald-400/20 to-teal-500/10",
@@ -70,7 +70,7 @@ export default function Home() {
             </div>
             <div>
               <h1 className="text-xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-neutral-900 to-neutral-600 dark:from-white dark:to-neutral-400 tracking-tight">
-                VeoLab<span className="text-blue-600 dark:text-blue-400 font-light">Studio</span>
+                SimLab<span className="text-blue-600 dark:text-blue-400 font-light">Studio</span>
               </h1>
             </div>
           </div>
@@ -154,7 +154,7 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-neutral-200 dark:border-neutral-800 py-10 text-center text-sm font-medium text-neutral-500 dark:text-neutral-400 bg-white dark:bg-neutral-950">
-        &copy; {new Date().getFullYear()} VeoLab Studio. Tüm Hakları Saklıdır. | Advanced Agentic Coding EdTech Theme
+        &copy; {new Date().getFullYear()} SimLab Studio. Tüm Hakları Saklıdır. | Advanced Agentic Coding EdTech Theme
       </footer>
 
       {/* Topic Input Modal */}
